@@ -52,7 +52,7 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable String username,
                                            @Valid @RequestBody User user) {
         Optional<User> existing = userService.findByUsername(username);
-        if (existing.isEmpty()) {
+        if (!existing.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         User entity = existing.get();

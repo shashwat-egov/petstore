@@ -54,7 +54,7 @@ public class PetController {
                                                  @RequestParam(required = false) String name,
                                                  @RequestParam(required = false) PetStatus status) {
         Optional<Pet> petOpt = petService.findById(petId);
-        if (petOpt.isEmpty()) {
+        if (!petOpt.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         Pet pet = petOpt.get();
